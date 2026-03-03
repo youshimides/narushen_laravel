@@ -16,4 +16,38 @@ class ReportController extends Controller
         $report -> delete();
         return redirect()->back();
     }
+    public function create(){
+        return view('report.create');
+    }
+
+    public function store(Request $request, Report $report){
+
+        $data = $request->validate([
+            'number' => 'required',
+            'description' => 'required',
+        ]);
+        
+        $report::create($data);
+        
+        
+        return redirect()->route('report.index');
+    }
+
+    public function edit(Report $report)
+    {
+        return view('report.edit', compact('report'));
+    }
+
+    public function update(Request $request, Report $report)
+    {
+    $data = $request->validate([
+        'number' => 'required',
+        'description' => 'required',
+    ]);
+    
+    $report->update($data);
+    
+    return redirect()->route('report.index');
+    }
+
 }

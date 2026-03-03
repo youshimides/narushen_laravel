@@ -9,3 +9,11 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@theme{
+    --white: #ffffff;
+    --red: #ef4444;
+    --red-hover: #dc2626;
+    --blue: #3b82f6;
+    --blue-hover: #2563eb;
+}

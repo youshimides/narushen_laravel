@@ -6,60 +6,56 @@
     <title>НАРУШЕНИЙ.NET</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100 font-sans antialiased">
+<body class="bg-gray-100 font-sans antialiased dark:bg-gray-800">
 
-    <nav class="bg-white shadow-sm border-b border-gray-200">
+    <nav class="bg-white shadow-sm border-b border-gray-200 dark:bg-black dark:border-gray-600">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <div class="flex-shrink-0">
-                    <h1 class="text-xl font-bold text-red-500 ">НАРУШЕНИЙ.NET</h1>
+                <div class="">
+                    <h1 class="text-xl font-bold text-red-500">НАРУШЕНИЙ.NET</h1>
                 </div>
-                
-                
+                <a href="{{ route('reports.create') }}" 
+                   class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                    Создать заявление
+                </a>
             </div>
         </div>
     </nav>
 
     <main class="py-10">
-        <div class="flex justify-between items-center h-16">
-                    <a href="{{ route('reports.create') }}" class="w-55 inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md text-white text-xl">
-                        Создать заявление
-                    </a>
-                </div>
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-
-        
-            {{-- <h2 class="text-2xl font-bold mb-6 text-gray-900">Лента заявлений</h2> --}}
-
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             @foreach ($reports as $report)
-                <article class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6 p-6 border border-gray-200">
+                <article class="bg-white border-b mb-6 p-6 border border-gray-200 hover:shadow-lg transition-shadow  dark:bg-gray-600 ">
+                    
                     <div class="flex justify-between items-start mb-3">
-                        <time datetime="{{ $report->created_at->format('Y-m-d') }}" class="text-sm font-medium text-gray-500">
+                        <time datetime="{{ $report->created_at->format('Y-m-d') }}" 
+                              class="text-sm font-medium text-gray-500 dark:text-white">
                             {{ $report->created_at->format('d.m.Y') }}
                         </time>
-                        <span class="text-lg font-bold text-gray-800">{{ $report->auto_number }}</span>
+                        <span class="text-lg font-bold text-gray-800 dark:text-white">{{ $report->number }}</span>
                     </div>
-                    <p class="text-gray-700 mb-4 leading-relaxed">
+                    <p class="text-gray-700 mb-4 leading-relaxed dark:text-white">
                         {{ $report->description }}
                     </p>
-                    <form method="post" action="{{route('reports.destroy', $report->id)}}">
-                        @method('delete')
-                        @csrf
-                        <input type="submit" value="Удалить">
-                    </form>
-
+                    <div class="flex justify-end space-x-3 pt-4 border-t border-gray-100">
+                        <a href="{{ route('reports.edit', $report) }}" 
+                           class="text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                            Редактировать
+                        </a>
+                        <form method="POST" action="{{ route('reports.destroy', $report) }}"  class="inline">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" 
+                                    class="text-red-600 hover:text-red-800 font-medium transition-colors">
+                                Удалить
+                            </button>
+                        </form>
+                    </div>
                 </article>
             @endforeach
-
-
-            
-
         </div>
     </main>
 
-    <footer class="bg-white ">
-        
-    </footer>
 
 </body>
 </html>
