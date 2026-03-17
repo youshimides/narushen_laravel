@@ -16,7 +16,7 @@
             </div>
         </div>
     </nav>
-
+<x-app-layout>
     <div class="max-w-2xl mx-auto mt-10 p-6 bg-white border-b shadow-md dark:bg-gray-600 dark:text-white">
         <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Создать заявление</h2>
         
@@ -37,6 +37,7 @@
                        class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 cursor-pointer font-medium">
             </div>
         </form>
+        </x-app-layout>
     </div>
 </body>
 </html>

@@ -16,7 +16,7 @@
             </div>
         </div>
     </nav>
-
+<x-app-layout>
     <div class="max-w-2xl mx-auto mt-8 p-6 bg-white border-b shadow dark:bg-gray-600 dark:text-white" >
         <h2 class="text-2xl font-bold mb-4">Редактировать заявление</h2>
         <form method="POST" action="{{ route('reports.update', $report) }}">
@@ -39,6 +39,7 @@
                 </button>
             </div>
         </form>
+        </x-app-layout>
     </div>
 </body>
 </html>
