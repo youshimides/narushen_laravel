@@ -10,21 +10,20 @@ class ReportController extends Controller
 {
     public function index(Request $request){
         $sort =  $request->input('sort');
-        if($sort== 'asc' || $sort =='desc'){
-            $reports = Report::orderBy('created_at',$sort)
-            ->paginate(8);
-        } else{
-            $reports = Report::paginate(8);
-        }
+        if($sort != 'asc' && $sort !='desc'){
+            $sort = 'desc';
+        } 
         $status = $request->input('status');
         $validate= $request->validate([
             'status'=>"exists:statuses,id"
         ]);
         if($validate){
             $reports = Report::where('status_id',$status)
+            ->orderBy('created_at', $sort)
             ->paginate(8);
         }else{
-            $reports = Report::paginate(8);
+            $reports = Report::orderBy('created_at',$sort)
+            ->paginate(8);
         }
 
         $statuses = Status::all();
