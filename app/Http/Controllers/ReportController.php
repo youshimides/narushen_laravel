@@ -35,13 +35,13 @@ class ReportController extends Controller
     public function destroy(Report $report)
     {
         if (Auth::user()->id === $report->user_id){
-            
+            $report -> delete();
+            return redirect()->back();
         }
         else {
             abort(403,'У вас нет прав =(');
         }
-        $report -> delete();
-        return redirect()->back();
+        
     }
     public function create(){
         return view('report.create');
@@ -65,6 +65,7 @@ class ReportController extends Controller
 
     public function edit(Report $report)
     {
+        
         if (Auth::user()->id === $report->user_id){
             return view('report.edit',compact('report'));
         }
@@ -72,25 +73,25 @@ class ReportController extends Controller
             abort(403,'У вас нет прав =(');
         }
 
-        return view('report.edit', compact('report'));
+        // return view('report.edit', compact('report'));
     }
 
     public function update(Request $request, Report $report)
     {
-    $data = $request->validate([
+    
+    if (Auth::user()->id === $report->user_id){
+        $data = $request->validate([
         'number' => 'required',
         'description' => 'required',
-    ]);
-    if (Auth::user()->id === $report->user_id){
+        ]);
+        
+        $report->update($data);
+    
+        return redirect()->route('report.index');
         }
         else {
             abort(403,'У вас нет прав =(');
-        }
-
-
-    $report->update($data);
-    
-    return redirect()->route('report.index');
+        }   
     }
 
 }
