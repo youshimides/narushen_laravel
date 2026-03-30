@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="ru">
     <head>
         <meta charset="UTF-8">
@@ -27,6 +27,7 @@
                     <span>Сортировка по дате создания:</span><br>
                     <a href="{{ route('report.index', ['sort'=>'desk', 'status'=>$status])}}">сначала новые</a><br>
                     <a href="{{ route('report.index', ['sort'=>'asc', 'status'=>$status])}}">сначала старые</a>
+                    
                 </div>
                 <div><br>
                     <p>Фильтрация по статусу заявки</p>
@@ -63,13 +64,17 @@
                                 </button>
                             </form>
                         </div>
+                        <x-status :type="$report->status->id">
+                            {{$report->status->name}}
+                        </x-status>
                     </article>
                 @endforeach
                 {{$reports->links()}}
             </x-app-layout>
             </div>
+            <div class="example mya"> asdasd</div>
         </main>
-
+    
 
     </body>
     </html>

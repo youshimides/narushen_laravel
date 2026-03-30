@@ -23,7 +23,13 @@ Route::get('/reports/create', function () {
     return view('report.create');
 })->name('reports.create');
 
+Route::get('/index', function(){
+    return view('index');
+});
 
+Route::get('/second', function(){
+    return view('second');
+});
 
 Route::delete('/reports/{report}',[ReportController::class,'destroy'])->name('reports.destroy');
 
