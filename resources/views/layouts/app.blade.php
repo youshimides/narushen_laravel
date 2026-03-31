@@ -14,8 +14,22 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    
+    <body class="font-sans antialiased bg-white ">
+        <nav class="bg-white shadow-sm border-b border-gray-200 dark:bg-black ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="">
+                    <h1 class="text-xl font-bold text-red-600">НАРУШЕНИЙ.NET</h1>
+                </div>
+                <a href="{{ route('reports.create') }}" 
+                    class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                        Создать заявление
+                    </a>
+            </div>
+        </div>
+    </nav>
+        <div class="bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -34,3 +48,5 @@
         </div>
     </body>
 </html>
+
+

@@ -1,4 +1,4 @@
-<!-- @props(['sort','status'])
+@props(['sort','status'])
 <div>
                 
                     <span>Сортировка по дате создания:</span><br>
@@ -16,4 +16,4 @@
                         </li> 
                         @endforeach ($statuses as $status)
                     </ul>
-                </div> -->
+                </div>
