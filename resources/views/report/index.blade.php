@@ -1,24 +1,6 @@
 
 <x-app-layout>
         <main class="py-10">
-            <!-- <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div>
-                    <span>Сортировка по дате создания:</span><br>
-                    <a href="{{ route('report.index', ['sort'=>'desk', 'status'=>$status])}}">сначала новые</a><br>
-                    <a href="{{ route('report.index', ['sort'=>'asc', 'status'=>$status])}}">сначала старые</a>
-                    
-                </div>
-                <div><br>
-                    <p>Фильтрация по статусу заявки</p>
-                    <ul>
-                        @foreach ($statuses as $status )
-                        <li>
-                            <a href="{{route('report.index', ['sort' => $sort, 'status'=>$status->id])}}">
-                                {{$status->name}}</a>
-                        </li> 
-                        @endforeach ($statuses as $status)
-                    </ul>
-                </div> -->
                 <x-filter :sort=$sort :status=$status></x-filter>
                 @foreach ($reports as $report)
                     <article class="bg-white border-b mb-6 p-6 border border-gray-200 hover:shadow-lg transition-shadow  dark:bg-gray-600 ">

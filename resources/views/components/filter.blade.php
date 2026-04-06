@@ -2,7 +2,7 @@
 <div>
                 
                     <span>Сортировка по дате создания:</span><br>
-                    <a href="{{ route('report.index', ['sort'=>'desk', 'status'=>$status])}}">сначала новые</a><br>
+                    <a href="{{ route('report.index', ['sort'=>'desс', 'status'=>$status])}}">сначала новые</a><br>
                     <a href="{{ route('report.index', ['sort'=>'asc', 'status'=>$status])}}">сначала старые</a>
                     
                 </div>
