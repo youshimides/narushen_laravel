@@ -29,6 +29,7 @@
             </div>
         </div>
     </nav>
+    
         <div class="bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
@@ -43,6 +44,9 @@
 
             <!-- Page Content -->
             <main>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+                    @include('layouts.flash-messages')
+                </div>
                 {{ $slot }}
             </main>
         </div>

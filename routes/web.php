@@ -11,7 +11,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(Admin::class)->group(function(){
+Route::middleware(['auth', Admin::class])->group(function(){
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::patch('/report/status/{report}', [ReportController::class, 'statusUpdate'])->name('reports.status.update');
 });

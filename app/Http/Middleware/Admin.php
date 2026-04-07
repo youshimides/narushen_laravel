@@ -24,6 +24,6 @@ class Admin
             }
         }
 
-        return redirect('login')->with('error', 'Авторизуйтесь под администратором');
+        return redirect()->route('dashboard')->with('error', 'У вас нет прав администратора');
     }
 }

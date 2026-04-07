@@ -60,7 +60,7 @@ class ReportController extends Controller
         $report::create($data);
         
         
-        return redirect()->route('report.index');
+        return redirect()->route('report.index')->with('info','Заявление отправлено');
     }
 
     public function edit(Report $report)
