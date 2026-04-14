@@ -50,19 +50,25 @@ class ReportController extends Controller
     public function store(Request $request, Report $report){
 
         $data = $request->validate([
-            'number' => 'required',
-            'description' => 'required',
-        ]);
-        
-        $data['user_id'] = Auth::user()->id;
-        $data['status_id'] = 1;
-
-        $report::create($data);
-        
-        
-        return redirect()->route('report.index')->with('info','Заявление отправлено');
+        'number' => 'required',
+        'description' => 'required',
+        'path_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+    
+    $imageName = time() . '.' . $request->path_img->extension();
+    $request->path_img->move(public_path('images'), $imageName);
+    
+    $data['user_id'] = Auth::user()->id;
+    $data['status_id'] = 1;
+    $data['path_img'] = $imageName;
+    
+    Report::create($data); 
+    
+    return redirect()->route('report.index')->with('info', 'Заявление отправлено');
     }
 
+    
+    
     public function edit(Report $report)
     {
         

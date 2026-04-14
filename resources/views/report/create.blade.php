@@ -4,7 +4,7 @@
             <div class="p-6 sm:p-8">
                 <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Создать заявление</h2>
                 
-                <form method="POST" action="{{ route('reports.store') }}" class="space-y-6">
+                <form method="POST" action="{{ route('reports.store') }}" enctype="multipart/form-data" class="space-y-6">
                     @csrf
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Номер автомобиля:</label>
@@ -25,6 +25,11 @@
                                 class="w-full sm:w-auto px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-all active:scale-95 text-center cursor-pointer">
                             Создать заявление
                         </button>
+                        <div>
+                            <x-input-label for="path_img" :value="__('Номер автомобиля')" />
+                            <x-text-input id="path_img" class="block mt-1" type="file" name="path_img" required/>
+                            <x-input-error :messages = "$errors->get('path_img')" class="mt-2"/>
+                        </div>
                         <a href="{{ route('report.index') }}" 
                            class="w-full sm:w-auto px-8 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 focus:ring-4 focus:ring-gray-300 transition-all text-center dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
                             Отмена

@@ -18,6 +18,10 @@
                     <p class="text-gray-700 mb-6 leading-relaxed dark:text-gray-300 break-words">
                         {{ $report->description }}
                     </p>
+                     
+                    @isset($report->path_img)
+                        <img src="/images/{{$report->path_img}}" class="contact-block__img" alt="">
+                    @endisset
 
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center pt-4 border-t border-gray-100 dark:border-gray-700 gap-4">
                         <span class="text-sm text-gray-500 flex items-center">
