@@ -20,7 +20,7 @@
                     </p>
                      
                     @isset($report->path_img)
-                        <img src="/images/{{$report->path_img}}" class="contact-block__img" alt="">
+                        <img src="{{ Storage::url($report->path_img) }}" class="contact-block__img" alt="">
                     @endisset
 
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center pt-4 border-t border-gray-100 dark:border-gray-700 gap-4">

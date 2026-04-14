@@ -6,6 +6,10 @@ use App\Models\Report;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Laravel\Facades\Image;
+use Intervention\Image\Encoders\WebpEncoder;
 
 class ReportController extends Controller
 {
@@ -55,12 +59,21 @@ class ReportController extends Controller
         'path_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
     
-    $imageName = time() . '.' . $request->path_img->extension();
-    $request->path_img->move(public_path('images'), $imageName);
+    $imageFile = $request->file('path_img');
+
+    $img = Image::read($imageFile);
+
+    $img->scaleDown(400);
+
+    $encoded = $img->encode(new WebpEncoder(80));
+
+    $imagePath = 'reports/' . time() . '.webp';
+    Storage::disk('public')->put($imagePath, $encoded->toString());
     
     $data['user_id'] = Auth::user()->id;
     $data['status_id'] = 1;
-    $data['path_img'] = $imageName;
+    $data['path_img'] = $imagePath;
+
     
     Report::create($data); 
     

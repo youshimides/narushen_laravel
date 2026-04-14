@@ -12,6 +12,9 @@
                 <div style="margin-bottom: 8px;">
                     <strong>Описание:</strong> {{ $report->description }}
                 </div>
+                @isset($report->path_img)
+                        <img src="{{ Storage::url($report->path_img) }}" class="contact-block__img" alt="">
+                    @endisset
                 <div style="margin-bottom: 8px;">
                     <strong>Номер авто:</strong> {{ $report->number }}
                 </div>
